@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Pacheco - Portfolio</title>
+    
+    <!-- Bootstrap CSS desde CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
+    <!-- Bootstrap Icons desde CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        /* Variables CSS */
+        :root {
+          --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+          --dark-bg: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        /* Reset y configuración base */
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+
+        body {
+          font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif !important;
+          overflow-x: hidden;
+          background: #0c0c0c !important;
+          color: white !important;
+        }
+
+        .main-container {
+          min-height: 100vh;
+          background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%) !important;
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* Animaciones de fondo */
+        .background-animation {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .floating-shapes {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+
+        .shape {
+          position: absolute;
+          border-radius: 50%;
+          opacity: 0.15;
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .shape-1 {
+          width: 120px;
+          height: 120px;
+          background: linear-gradient(45deg, #667eea, #764ba2);
+          top: 15%;
+          left: 8%;
+          animation-delay: 0s;
+        }
+
+        .shape-2 {
+          width: 160px;
+          height: 160px;
+          background: linear-gradient(45deg, #f093fb, #f5576c);
+          top: 55%;
+          right: 8%;
+          animation-delay: 2s;
+        }
+
+        .shape-3 {
+          width: 80px;
+          height: 80px;
+          background: linear-gradient(45deg, #4facfe, #00f2fe);
+          top: 75%;
+          left: 15%;
+          animation-delay: 4s;
+        }
+
+        .shape-4 {
+          width: 140px;
+          height: 140px;
+          background: linear-gradient(45deg, #43e97b, #38f9d7);
+          top: 25%;
+          right: 25%;
+          animation-delay: 1s;
+          border-radius: 20%;
+        }
+
+        .shape-5 {
+          width: 180px;
+          height: 180px;
+          background: linear-gradient(45deg, #fa709a, #fee140);
+          top: 5%;
+          right: 45%;
+          animation-delay: 3s;
+          border-radius: 30%;
+        }
+
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+            transform: translateY(-30px) rotate(180deg);
+          }
+        }
+
+        /* Partículas más visibles */
+        .particles {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+        }
+
+        .particle {
+          position: absolute;
+          width: 6px;
+          height: 6px;
+          background: rgba(255, 255, 255, 0.6);
+          border-radius: 50%;
+          animation: particle-float 4s linear infinite;
+        }
+
+        @keyframes particle-float {
+          0% {
+            opacity: 0;
+            transform: translateY(100vh) scale(0);
+          }
+          10% {
+            opacity: 1;
+          }
+          90% {
+            opacity: 1;
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(-100px) scale(1);
+          }
+        }
+
+        /* Contenido principal */
+        .container-fluid {
+          position: relative;
+          z-index: 2;
+        }
+
+        /* Texto principal más brillante */
+        .main-title {
+          font-size: 5rem !important;
+          font-weight: 900 !important;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4facfe 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+          animation: gradient-shift 3s ease-in-out infinite, glow 2s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+          font-size: 3rem !important;
+          font-weight: 700 !important;
+          color: white !important;
+          text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .gradient-text-secondary {
+          background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          text-shadow: 0 0 20px rgba(240, 147, 251, 0.5);
+        }
+
+        .description {
+          font-size: 1.5rem !important;
+          color: #e0e0e0 !important;
+          font-weight: 500 !important;
+        }
+
+        .sub-description {
+          color: #b0b0b0 !important;
+          font-size: 1.1rem !important;
+        }
+
+        @keyframes gradient-shift {
+          0%, 100% {
+            filter: hue-rotate(0deg);
+          }
+          50% {
+            filter: hue-rotate(45deg);
+          }
+        }
+
+        @keyframes glow {
+          0% {
+            text-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+          }
+          100% {
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.8), 0 0 40px rgba(118, 75, 162, 0.6);
+          }
+        }
+
+        /* Animaciones de entrada más visibles */
+        .header-section {
+          opacity: 0;
+          animation: fadeInDown 1.2s ease-out 0.5s forwards;
+        }
+
+        .social-links-container {
+          opacity: 0;
+          animation: fadeInUp 1s ease-out 3s forwards;
+        }
+
+        .social-link-item {
+          opacity: 0;
+          transform: translateY(60px) scale(0.8);
+          animation: slideInUp 0.8s ease-out forwards;
+        }
+
+        .social-link-item:nth-child(1) { animation-delay: 3.2s; }
+        .social-link-item:nth-child(2) { animation-delay: 3.4s; }
+        .social-link-item:nth-child(3) { animation-delay: 3.6s; }
+        .social-link-item:nth-child(4) { animation-delay: 3.8s; }
+        .social-link-item:nth-child(5) { animation-delay: 4.0s; }
+
+        .cta-section {
+          opacity: 0;
+          transform: scale(0.7);
+          animation: zoomIn 1s ease-out 4.3s forwards;
+        }
+
+        .footer-section {
+          opacity: 0;
+          animation: fadeInUp 1s ease-out 4.6s forwards;
+        }
+
+        /* Keyframes */
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-80px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes zoomIn {
+          from {
+            opacity: 0;
+            transform: scale(0.7);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(60px) scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+
+        /* Cards sociales más brillantes */
+        .social-card {
+          background: rgba(255, 255, 255, 0.08) !important;
+          backdrop-filter: blur(15px);
+          border: 2px solid rgba(255, 255, 255, 0.15) !important;
+          border-radius: 25px !important;
+          transition: all 0.4s ease;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.6s;
+        }
+
+        .social-card:hover::before {
+          left: 100%;
+        }
+
+        .social-card:hover {
+          transform: translateY(-15px) scale(1.05) !important;
+          background: rgba(255, 255, 255, 0.15) !important;
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.1);
+          border-color: rgba(255, 255, 255, 0.3) !important;
+        }
+
+        /* Iconos sociales más grandes y brillantes */
+        .social-icon {
+          width: 70px !important;
+          height: 70px !important;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          font-size: 28px !important;
+          color: white !important;
+          transition: all 0.4s ease;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-card:hover .social-icon {
+          transform: rotate(360deg) scale(1.2);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .linkedin-bg {
+          background: linear-gradient(135deg, #0077b5, #00a0dc) !important;
+        }
+        .gmail-bg {
+          background: linear-gradient(135deg, #ea4335, #fbbc05) !important;
+        }
+        .github-bg {
+          background: linear-gradient(135deg, #333, #666) !important;
+        }
+        .cv-bg {
+          background: linear-gradient(135deg, #28a745, #20c997) !important;
+        }
+        .portfolio-bg {
+          background: linear-gradient(135deg, #6f42c1, #e83e8c) !important;
+        }
+
+        .card-title {
+          color: white !important;
+          font-weight: 600 !important;
+          font-size: 1.2rem !important;
+        }
+
+        .card-text {
+          color: #c0c0c0 !important;
+        }
+
+        /* Call to Action más brillante */
+        .cta-card {
+          background: rgba(255, 255, 255, 0.08) !important;
+          backdrop-filter: blur(20px);
+          border: 2px solid rgba(255, 255, 255, 0.15) !important;
+          border-radius: 30px !important;
+          max-width: 650px;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-card h3 {
+          color: white !important;
+          font-weight: 700 !important;
+          font-size: 2rem !important;
+        }
+
+        .cta-card p {
+          color: #d0d0d0 !important;
+          font-size: 1.1rem !important;
+        }
+
+        .btn-gradient {
+          background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+          border: none !important;
+          color: white !important;
+          font-weight: 700 !important;
+          padding: 15px 35px !important;
+          border-radius: 50px !important;
+          transition: all 0.4s ease;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          font-size: 1.1rem !important;
+          box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .btn-gradient:hover {
+          transform: translateY(-3px) scale(1.05) !important;
+          box-shadow: 0 15px 35px rgba(79, 172, 254, 0.6) !important;
+          color: white !important;
+          background: linear-gradient(135deg, #00f2fe 0%, #4facfe 100%) !important;
+        }
+
+        /* Footer */
+        .footer-section p {
+          color: #888 !important;
+          font-size: 0.95rem !important;
+        }
+
+        /* Responsive mejorado */
+        @media (max-width: 768px) {
+          .main-title {
+            font-size: 3.5rem !important;
+          }
+
+          .subtitle {
+            font-size: 2.2rem !important;
+          }
+
+          .description {
+            font-size: 1.3rem !important;
+          }
+
+          .social-icon {
+            width: 60px !important;
+            height: 60px !important;
+            font-size: 24px !important;
+          }
+
+          .shape {
+            opacity: 0.08;
+          }
+
+          .cta-card {
+            margin: 0 15px;
+          }
+
+          .cta-card h3 {
+            font-size: 1.6rem !important;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .main-title {
+            font-size: 2.8rem !important;
+          }
+
+          .subtitle {
+            font-size: 1.8rem !important;
+          }
+
+          .main-container {
+            padding: 20px 0;
+          }
+        }
+
+        /* Forzar visibilidad */
+        .text-white {
+          color: white !important;
+        }
+
+        .text-muted {
+          color: #b0b0b0 !important;
+        }
+
+        /* Animación de carga */
+        .main-container {
+          animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Animated Background -->
+        <div class="background-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+            <div class="particles" id="particles"></div>
+        </div>
+
+        <div class="container-fluid h-100 d-flex align-items-center justify-content-center">
+            <div class="row w-100 justify-content-center">
+                <div class="col-12 col-lg-10 col-xl-8">
+                    
+                    <!-- Header Section -->
+                    <div class="text-center mb-5 header-section">
+                        <h1 class="main-title mb-4">
+                            ¡Hola! 👋
+                        </h1>
+                        <h2 class="subtitle mb-4">
+                            Soy <span class="gradient-text-secondary">Thomas Pacheco</span>
+                        </h2>
+                        <p class="description mb-2">
+                            Futuro AI Engineer
+                        </p>
+                        <p class="sub-description">
+                            Conecta conmigo en mis redes sociales
+                        </p>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="row g-4 mb-5 social-links-container" id="socialLinks">
+                        <!-- LinkedIn -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl social-link-item">
+                            <div class="card social-card h-100" data-platform="linkedin">
+                                <div class="card-body text-center p-4">
+                                    <div class="social-icon linkedin-bg mb-3">
+                                        <i class="bi bi-linkedin"></i>
+                                    </div>
+                                    <h5 class="card-title mb-2">LinkedIn</h5>
+                                    <p class="card-text small">Conecta conmigo profesionalmente</p>
+                                    <a href="https://linkedin.com/in/thomas-pacheco" class="stretched-link" target="_blank" rel="noopener"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Gmail -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl social-link-item">
+                            <div class="card social-card h-100" data-platform="gmail">
+                                <div class="card-body text-center p-4">
+                                    <div class="social-icon gmail-bg mb-3">
+                                        <i class="bi bi-envelope-fill"></i>
+                                    </div>
+                                    <h5 class="card-title mb-2">Gmail</h5>
+                                    <p class="card-text small">Envíame un correo</p>
+                                    <a href="mailto:thomas.pacheco@gmail.com" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- GitHub -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl social-link-item">
+                            <div class="card social-card h-100" data-platform="github">
+                                <div class="card-body text-center p-4">
+                                    <div class="social-icon github-bg mb-3">
+                                        <i class="bi bi-github"></i>
+                                    </div>
+                                    <h5 class="card-title mb-2">GitHub</h5>
+                                    <p class="card-text small">Ve mis proyectos</p>
+                                    <a href="https://github.com/thomas-pacheco" class="stretched-link" target="_blank" rel="noopener"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CV -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl social-link-item">
+                            <div class="card social-card h-100" data-platform="cv">
+                                <div class="card-body text-center p-4">
+                                    <div class="social-icon cv-bg mb-3">
+                                        <i class="bi bi-file-earmark-text-fill"></i>
+                                    </div>
+                                    <h5 class="card-title mb-2">CV</h5>
+                                    <p class="card-text small">Descarga mi currículum</p>
+                                    <a href="./cv.pdf" class="stretched-link" target="_blank"></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio -->
+                        <div class="col-12 col-sm-6 col-lg-4 col-xl social-link-item">
+                            <div class="card social-card h-100" data-platform="portfolio">
+                                <div class="card-body text-center p-4">
+                                    <div class="social-icon portfolio-bg mb-3">
+                                        <i class="bi bi-person-circle"></i>
+                                    </div>
+                                    <h5 class="card-title mb-2">Portafolio</h5>
+                                    <p class="card-text small">Conoce más sobre mí</p>
+                                    <a href="#portfolio" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Call to Action -->
+                    <div class="text-center cta-section">
+                        <div class="card cta-card d-inline-block">
+                            <div class="card-body p-5">
+                                <h3 class="mb-3">¿Listo para colaborar? 🚀</h3>
+                                <p class="mb-4">
+                                    No dudes en contactarme para proyectos, oportunidades o simplemente para charlar
+                                </p>
+                                <a href="mailto:thomas.pacheco@gmail.com" class="btn btn-gradient btn-lg">
+                                    <i class="bi bi-envelope-fill me-2"></i>
+                                    Contáctame Ahora
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="text-center mt-5 footer-section">
+                        <p class="small">
+                            © <span id="currentYear"></span> Thomas Pacheco - Hecho con ❤️ y mucho café ☕
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS desde CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Configurar año actual
+        document.addEventListener("DOMContentLoaded", () => {
+          document.getElementById("currentYear").textContent = new Date().getFullYear()
+        })
+
+        // Crear partículas animadas más visibles
+        function createParticles() {
+          const particlesContainer = document.getElementById("particles")
+          const particleCount = 60
+
+          for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement("div")
+            particle.className = "particle"
+
+            // Posición aleatoria
+            particle.style.left = Math.random() * 100 + "%"
+            particle.style.animationDelay = Math.random() * 4 + "s"
+            particle.style.animationDuration = Math.random() * 3 + 3 + "s"
+
+            particlesContainer.appendChild(particle)
+          }
+        }
+
+        // Efectos de hover mejorados para las cards
+        function enhanceCardEffects() {
+          const cards = document.querySelectorAll(".social-card")
+
+          cards.forEach((card) => {
+            card.addEventListener("mouseenter", function () {
+              this.style.transform = "translateY(-15px) scale(1.05)"
+              this.style.background = "rgba(255, 255, 255, 0.15)"
+              this.style.borderColor = "rgba(255, 255, 255, 0.3)"
+            })
+
+            card.addEventListener("mouseleave", function () {
+              this.style.transform = "translateY(0) scale(1)"
+              this.style.background = "rgba(255, 255, 255, 0.08)"
+              this.style.borderColor = "rgba(255, 255, 255, 0.15)"
+            })
+
+            // Efecto de click
+            card.addEventListener("click", function () {
+              this.style.transform = "translateY(-5px) scale(0.98)"
+              setTimeout(() => {
+                this.style.transform = "translateY(-15px) scale(1.05)"
+              }, 150)
+            })
+          })
+        }
+
+        // Efecto parallax suave para las formas flotantes
+        function initParallax() {
+          window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset
+            const shapes = document.querySelectorAll(".shape")
+
+            shapes.forEach((shape, index) => {
+              const speed = (index + 1) * 0.3
+              shape.style.transform = `translateY(${scrolled * speed}px)`
+            })
+          })
+        }
+
+        // Inicializar todo cuando la página carga
+        document.addEventListener("DOMContentLoaded", () => {
+          // Crear partículas
+          createParticles()
+
+          // Mejorar efectos de cards
+          enhanceCardEffects()
+
+          // Inicializar parallax
+          initParallax()
+
+          console.log("🚀 Página de Thomas Pacheco cargada correctamente!")
+        })
+
+        // Función para manejar errores de carga
+        window.addEventListener("error", (e) => {
+          console.warn("Error cargando recurso:", e.target.src || e.target.href)
+        })
+    </script>
+</body>
+</html>
